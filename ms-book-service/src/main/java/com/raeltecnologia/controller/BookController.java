@@ -14,7 +14,7 @@ import com.raeltecnologia.repository.BookRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name = "Book endpoint")
+@Tag(name = "Book service endpoint")
 @RestController
 @RequestMapping("book-service")
 public class BookController {
