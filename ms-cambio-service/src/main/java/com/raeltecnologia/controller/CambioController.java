@@ -3,6 +3,8 @@ package com.raeltecnologia.controller;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,8 @@ public class CambioController {
 	@Autowired
 	private CambioRepository repo;
 	
+	private Logger logger = LoggerFactory.getLogger(CambioController.class); 
+	
 	@Operation(summary = "Convesion", description = "currency")
 	@GetMapping(value = "/{amount}/{from}/{to}")
 	public Cambio getCambio(
@@ -34,6 +38,8 @@ public class CambioController {
 							@PathVariable("from")String from,
 							@PathVariable("to")String to
 							) {
+		
+		logger.info("Getcambio is called with -> {}, {} and {}", amount, from, to);
 		
 		var cambio = repo.findByFromAndTo(from, to);
 		if(cambio == null) throw new RuntimeException("Currency Unsupported");
