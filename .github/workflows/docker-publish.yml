@@ -1,0 +1,41 @@
+name: Continuous Integration with Github
+
+on: [push]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: log in to dockerhub
+        uses: actions/checkout@v3
+        with:
+           username:  ${{secrets.DOCKER_USERNAME}}
+           password:  ${{secrets.DOCKER_PASSWORD}}
+           
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3.6.0
+        with:
+         java-version: '17'
+         distribution: 'adopt'
+         
+      - name: Build Eureka Naming Container Image
+        working-directory: ./ms-naming-server/
+        run: mvn spring-boot:build-image -DskipTests
+        
+      - name: Build Api Gateway Container Image
+        working-directory: ./ms-api-gateway/
+        run: mvn spring-boot:build-image -DskipTests
+        
+      - name: Build Cambio Microservice Jar
+        working-directory: ./ms-cambio-service/
+        run: mvn clean package -DskipTests
+        
+      - name: Build Book Microservice Jar
+        working-directory: ./ms-book-service/
+        run: mvn clean package -DskipTests
+      
+      - name: Docker Compose Build Book Microservice Jar
+        working-directory: ./
+        run: docker-compose build  
+   
