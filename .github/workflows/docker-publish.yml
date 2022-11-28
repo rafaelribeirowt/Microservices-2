@@ -40,25 +40,26 @@ jobs:
       - name: Docker Compose Build
         working-directory: ./
         run: docker-compose build  
-        
-      
+
           
-      - name: Push dockerHub container registry    
-        run:  
-          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:${{github.run_id}}
-          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:latest
-          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:${{github.run_id}}
-          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:latest
-          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:${{github.run_id}}
-          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:latest
-          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-book-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-book-service:${{github.run_id}}
-          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-book-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-book-service:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:${{github.run_id}}
-          docker push ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:${{github.run_id}}
-          docker push ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:${{github.run_id}}
-          docker push ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/ms-book-service:${{github.run_id}}
-          docker push ${{ secrets.DOCKER_USERNAME }}/ms-book-service:latest
+      - name: Push dockerHub container registry
+        uses: CyrusRoshan/generic-docker-run@1.0.0
+        with:
+          command:
+            docker tag ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:${{github.run_id}}
+            docker tag ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:latest
+            docker tag ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:${{github.run_id}}
+            docker tag ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:latest
+            docker tag ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:${{github.run_id}}
+            docker tag ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:latest
+            docker tag ${{ secrets.DOCKER_USERNAME }}/ms-book-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-book-service:${{github.run_id}}
+            docker tag ${{ secrets.DOCKER_USERNAME }}/ms-book-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-book-service:latest
+            docker push ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:${{github.run_id}}
+            docker push ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:latest
+            docker push ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:${{github.run_id}}
+            docker push ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:latest
+            docker push ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:${{github.run_id}}
+            docker push ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:latest
+            docker push ${{ secrets.DOCKER_USERNAME }}/ms-book-service:${{github.run_id}}
+            docker push ${{ secrets.DOCKER_USERNAME }}/ms-book-service:latest
           
