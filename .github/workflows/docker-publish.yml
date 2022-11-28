@@ -90,5 +90,3 @@ jobs:
 
       - name: Push dockerHub container ms-book-service latest
         run: docker push ${{ secrets.DOCKER_USERNAME }}/ms-book-service:latest
-        
-         t
