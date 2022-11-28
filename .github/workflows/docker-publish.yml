@@ -8,7 +8,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Save state
+        run: echo "{name}={value}" >> $GITHUB_STATE
 
+      - name: Set output
+        run: echo "{name}={value}" >> $GITHUB_OUTPUT
+        
       - id: docker-publish
         uses: bitovi/github-actions-docker-publish@main
         with:
