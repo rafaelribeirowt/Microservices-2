@@ -45,8 +45,20 @@ jobs:
           
       - name: Push dockerHub container registry    
         run:  
-          docker push rafaelribeirowt/ms-naming-server:0.0.1-SNAPSHOT    
-          docker push rafaelribeirowt/ms-api-gateway:0.0.1-SNAPSHOT        
-          docker push rafaelribeirowt/ms-cambio-service:0.0.1-SNAPSHOT   
-          docker push rafaelribeirowt/ms-book-service:0.0.1-SNAPSHOT
+          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:${{github.run_id}}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:latest
+          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:${{github.run_id}}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:latest
+          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:${{github.run_id}}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:latest
+          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-book-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-book-service:${{github.run_id}}
+          docker tag ${{ secrets.DOCKER_USERNAME }}/ms-book-service:0.0.1-SNAPSHOT ${{ secrets.DOCKER_USERNAME }}/ms-book-service:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:${{github.run_id}}
+          docker push ${{ secrets.DOCKER_USERNAME }}/ms-naming-server:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:${{github.run_id}}
+          docker push ${{ secrets.DOCKER_USERNAME }}/ms-api-gateway:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:${{github.run_id}}
+          docker push ${{ secrets.DOCKER_USERNAME }}/ms-cambio-service:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/ms-book-service:${{github.run_id}}
+          docker push ${{ secrets.DOCKER_USERNAME }}/ms-book-service:latest
           
