@@ -17,5 +17,9 @@ jobs:
         uses: actions/setup-java@v3.6.0
         with:
          java-version: '17'
-         distribution: 'adopt'    
+         distribution: 'adopt'
+         
+      - name: Build Eureka Naming Container Image
+        working-directory: ./ms-naming-server/
+        run: mvn spring-boot:build-image -DskipTests   
    
