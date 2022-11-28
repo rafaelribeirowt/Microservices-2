@@ -1,0 +1,15 @@
+name: Continuous Integration with Github
+
+on: [push]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: log in to dockerhub
+        uses: actions/checkout@v3
+        with:
+           username:  ${{secrets.DOCKER_USERNAME}}
+           password:  ${{secrets.DOCKER_PASSWORD}}
+   
