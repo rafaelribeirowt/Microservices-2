@@ -35,7 +35,7 @@ jobs:
         working-directory: ./ms-book-service/
         run: mvn clean package -DskipTests
       
-      - name: Docker Compose Build Book Microservice Jar
-        working-directory: ./Docker/
+      - name: Docker Compose Build
+        working-directory: ./Docker
         run: docker-compose build  
    
