@@ -39,24 +39,12 @@ jobs:
         working-directory: ./
         run: docker-compose build  
         
-      - name: Tag docker container
-        run: 
-          docker image tag rafaelribeirowt/ms-naming-server:0.0.1-SNAPSHOT rafaelribeirowt/ms-naming-server:${{github.run_id}}
-          docker image tag rafaelribeirowt/ms-naming-server:0.0.1-SNAPSHOT rafaelribeirowt/ms-naming-server:latest 
-          docker image tag rafaelribeirowt/ms-api-gateway:0.0.1-SNAPSHOT rafaelribeirowt/ms-api-gateway:${{github.run_id}}
-          docker image tag rafaelribeirowt/ms-api-gateway:0.0.1-SNAPSHOT rafaelribeirowt/ms-api-gateway:latest 
-          docker image tag rafaelribeirowt/ms-cambio-service:0.0.1-SNAPSHOT rafaelribeirowt/ms-cambio-service:${{github.run_id}}
-          docker image tag rafaelribeirowt/ms-cambio-service:0.0.1-SNAPSHOT rafaelribeirowt/ms-cambio-service:latest
-          docker image tag rafaelribeirowt/ms-book-service:0.0.1-SNAPSHOT rafaelribeirowt/ms-book-service:${{github.run_id}}
-          docker image tag rafaelribeirowt/ms-book-service:0.0.1-SNAPSHOT rafaelribeirowt/ms-book-service:latest
+      
           
       - name: Push dockerHub container registry    
         run:  
-          docker push rafaelribeirowt/ms-naming-server:${{github.run_id}}
-          docker push rafaelribeirowt/ms-naming-server:latest
-          docker push rafaelribeirowt/ms-api-gateway:${{github.run_id}}
-          docker push rafaelribeirowt/ms-api-gateway:latest
-          docker push rafaelribeirowt/ms-cambio-service:${{github.run_id}}
-          docker push rafaelribeirowt/ms-cambio-service:latest
-          docker push rafaelribeirowt/ms-book-service:${{github.run_id}}
-          docker push rafaelribeirowt/ms-book-service:latest
+          docker push rafaelribeirowt/ms-naming-server:0.0.1-SNAPSHOT    
+          docker push rafaelribeirowt/ms-api-gateway:0.0.1-SNAPSHOT        
+          docker push rafaelribeirowt/ms-cambio-service:0.0.1-SNAPSHOT   
+          docker push rafaelribeirowt/ms-book-service:0.0.1-SNAPSHOT
+          
